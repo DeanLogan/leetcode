@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"sort"
 )
 
 func main() {
@@ -9,10 +10,6 @@ func main() {
 	fmt.Println(groupAnagrams([""]))
 	fmt.Println(groupAnagrams(["a"]))
 }
-
-import (
-	"sort"
-)
 
 func groupAnagrams(strs []string) [][]string {
 	anagramGroups := make(map[string][]string)

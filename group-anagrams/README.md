@@ -17,4 +17,6 @@ Example 3:
 Input: strs = ["a"]
 Output: [["a"]]
 
+## Submission Screenshot
+
 ![Image](./group-anagrams.png)
