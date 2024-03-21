@@ -6,9 +6,9 @@ import (
 )
 
 func main() {
-	fmt.Println(groupAnagrams(["eat","tea","tan","ate","nat","bat"]))
-	fmt.Println(groupAnagrams([""]))
-	fmt.Println(groupAnagrams(["a"]))
+	fmt.Println(groupAnagrams([]string{"eat","tea","tan","ate","nat","bat"}))
+	fmt.Println(groupAnagrams([]string{}))
+	fmt.Println(groupAnagrams([]string{"a"}))
 }
 
 func groupAnagrams(strs []string) [][]string {

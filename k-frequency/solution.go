@@ -1,11 +1,13 @@
+package main
+
 import (
 	"fmt"
 	"sort"
 )
 
 func main(){
-	fmt.Println(topKFrequent([]int{1,1,1,2,2,3}))
-	fmt.Println(topKFrequent([]int{}))
+	fmt.Println(topKFrequent([]int{1,1,1,2,2,3}, 2))
+	fmt.Println(topKFrequent([]int{}, 1))
 }
 
 func topKFrequent(nums []int, k int) []int {
@@ -25,7 +27,7 @@ func topKFrequent(nums []int, k int) []int {
 
     mostFrequentNums := make([]int, k)
 
-    for i, _ := range mostFrequentNums {
+    for i := range mostFrequentNums {
         mostFrequentNums[i] = mapToSlice[i][0]
     }
 
