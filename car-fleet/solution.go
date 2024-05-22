@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	"sort"
+	"slices"
+	"cmp"
 )
 
 func main() {
@@ -11,29 +12,29 @@ func main() {
 	fmt.Println(carFleet(100, []int{0,2,4}, []int{4,2,1}))
 }
 
-type car struct {
-	pos   int
-	speed int
+type Car struct {
+    position int
+    time     float32
 }
 
 func carFleet(target int, position []int, speed []int) int {
-	stack := []float32{}
-	fleets := []car{}
-	for i := 0; i < len(position); i++ {
-		fleets = append(fleets, car{position[i], speed[i]})
-	}
+    cars := make([]Car, len(position))
+    for i := range position {
+        cars[i] = Car{position[i], float32(target-position[i]) / float32(speed[i])}
+    }
+    slices.SortFunc(cars, func(a, b Car) int {
+        return cmp.Compare(a.position, b.position)
+    })
+    fleetStack := []Car{}
+    for i := len(cars) - 1; i >= 0; i-- {
+        if len(fleetStack) == 0 {
+            fleetStack = append(fleetStack, cars[i])
+            continue
+        }
+        if cars[i].time > fleetStack[len(fleetStack)-1].time {
+            fleetStack = append(fleetStack, cars[i])
+        }
+    }
 
-	sort.Slice(fleets, func(i, j int) bool {
-		return fleets[i].pos < fleets[j].pos
-	})
-
-	for i := len(fleets) -1; i >=0; i-- {
-		stack = append(stack, float32(target-fleets[i].pos / fleets[i].speed))
-		stackLen := len(stack)
-		if stackLen >= 2 && stack[stackLen-1] <= stack[stackLen-2] {
-			stack = stack[:stackLen-1]
-		}
-	}
-
-	return len(stack)
+    return len(fleetStack)
 }
