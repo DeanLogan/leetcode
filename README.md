@@ -19,3 +19,13 @@ Or
 ```sh
 go run ./k-frequency/solution.go
 ```
+
+## Create problem template
+
+Create a new LeetCode folder from a problem URL to start work on the problem:
+
+```sh
+go run ./leetcode-template -url https://leetcode.com/problems/two-sum/
+```
+
+The script creates the problem folder, writes `README.md` from the LeetCode problem data, and adds a `solution.go` file.
