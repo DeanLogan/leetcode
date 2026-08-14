@@ -15,6 +15,8 @@ func main() {
     list2 := buildList([]int{1,2,3,4,5})
 	reorderList(list1)
 	reorderList(list2)
+	printList(list1)
+	printList(list2)
 }
 
 func reorderList(head *ListNode)  {
