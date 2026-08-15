@@ -12,33 +12,41 @@ type ListNode struct {
 
 func main() {
 	list1 := buildList([]int{1,2,3,4,5})
-    list2 := buildList([]int{1})
-    list3 := buildList([]int{1,2})
-	ans1 := removeNthFromEnd(list1, 2)
-	ans2 := removeNthFromEnd(list2, 1)
-	ans3 := removeNthFromEnd(list3, 1)
+	ans1 := removeNthFromEnd(list1, 4)
 	printList(ans1)
+    
+	list2 := buildList([]int{1})
+	ans2 := removeNthFromEnd(list2, 1)
 	printList(ans2)
+    
+	list3 := buildList([]int{1,2})
+	ans3 := removeNthFromEnd(list3, 1)
 	printList(ans3)
 }
 
 func removeNthFromEnd(head *ListNode, n int) *ListNode {
-    listLen := 0
-	originalHead := head
-	for head != nil {
-		head = head.Next
-		listLen++
-	}
-	head = originalHead
-	if n == listLen {
-		return head.Next
+    currentHead := head
+	nthHead := head
+
+	for i:=0; i<n; i++ {
+		if nthHead != nil {
+			nthHead = nthHead.Next
+		}
 	}
 
-    for i := 0; i < listLen-n-1; i++ {
-		head = head.Next
-    }
-    head.Next = head.Next.Next
-	return originalHead
+	if nthHead == nil {
+		return currentHead.Next
+	}
+
+	for currentHead.Next != nil {
+		if nthHead.Next == nil {
+			currentHead.Next = currentHead.Next.Next
+			break
+		}
+		currentHead = currentHead.Next
+		nthHead = nthHead.Next
+	}
+	return head
 }
 
 func buildList(values []int) *ListNode {
