@@ -3,11 +3,41 @@ package main
 import (
 	"fmt"
 	"strings"
+	"container/heap"
 )
 
 type ListNode struct {
 	Val  int
 	Next *ListNode
+}
+
+type PriorityQueue []*ListNode
+
+func (h PriorityQueue) Len() int { 
+	return len(h) 
+}
+
+func (h PriorityQueue) Less(i, j int) bool { 
+	return h[i].Val < h[j].Val 
+}
+
+func (h PriorityQueue) Swap(i, j int) { 
+	h[i], h[j] = h[j], h[i] 
+}
+
+func (h *PriorityQueue) Push(x any) {
+    node := x.(*ListNode)
+    if node != nil {
+        *h = append(*h, node)
+    }
+}
+
+func (h *PriorityQueue) Pop() any {
+	old := *h
+	n := len(old)
+	x := old[n-1]
+	*h = old[0 : n-1]
+	return x
 }
 
 func main() {
@@ -25,33 +55,23 @@ func main() {
 }
 
 func mergeKLists(lists []*ListNode) *ListNode {
-    dummyHead := &ListNode{Val: -2147483648}
+	pq := &PriorityQueue{}
+	heap.Init(pq)
 
-	for _, head := range lists {
-		for head != nil {
-			addValueToList(head.Val, dummyHead)
-			head = head.Next
-		}
+	for _, head := range lists  {
+		heap.Push(pq, head)
 	}
 
-	return dummyHead.Next
-}
-
-func addValueToList(value int, head *ListNode) {
-	prevNode := (*ListNode)(nil)
-	for head != nil {
-		if head.Val >= value {
-			node := &ListNode{Val: value, Next: head}
-			prevNode.Next = node
-			break
-		}
-		prevNode = head
-		head = head.Next
+	dummy := &ListNode{}
+	prevNode := dummy
+	for pq.Len() > 0 {
+		minNode := heap.Pop(pq).(*ListNode)
+		heap.Push(pq, minNode.Next)
+		prevNode.Next = minNode
+		prevNode = minNode
 	}
 
-	if head == nil {
-		prevNode.Next = &ListNode{Val: value}
-	}
+	return dummy.Next
 }
 
 func buildList(values []int) *ListNode {
@@ -70,10 +90,6 @@ func buildList(values []int) *ListNode {
 }
 
 func printList(head *ListNode) {
-	if head == nil {
-		fmt.Println("[]")
-	}
-
 	var values []string
 	for node := head; node != nil; node = node.Next {
 		values = append(values, fmt.Sprint(node.Val))
