@@ -6,8 +6,8 @@ import (
 
 func main() {
 	PrintList(reverseKGroup(BuildList([]int{1,2,3,4,5}), 2))
-	// PrintList(reverseKGroup(BuildList([]int{1,2,3,4,5}), 3))
-	// PrintList(reverseKGroup(BuildList([]int{1,2}), 2))
+	PrintList(reverseKGroup(BuildList([]int{1,2,3,4,5}), 3))
+	PrintList(reverseKGroup(BuildList([]int{1,2}), 2))
 }
 
 func reverseKGroup(head *ListNode, k int) *ListNode {

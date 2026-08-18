@@ -5,8 +5,8 @@ import (
 )
 
 func main(){
-	// fmt.Println(minNumberOfHours(5, 3, []int{1,4,3,2}, []int{2,6,3,1}))
-	// fmt.Println(minNumberOfHours(2, 4, []int{1}, []int{3}))
+	fmt.Println(minNumberOfHours(5, 3, []int{1,4,3,2}, []int{2,6,3,1}))
+	fmt.Println(minNumberOfHours(2, 4, []int{1}, []int{3}))
 	fmt.Println(minNumberOfHours(1, 1, []int{1,1,1,1}, []int{1,1,1,50}))
 }
 

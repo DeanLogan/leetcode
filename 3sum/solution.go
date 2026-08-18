@@ -17,7 +17,6 @@ func threeSum(nums []int) [][]int {
 
 	result := [][]int{}
 	for num1Idx := 0; num1Idx < n-2; num1Idx++ {
-		// Skip duplicates for num1
 		if num1Idx > 0 && nums[num1Idx] == nums[num1Idx-1] {
 			continue
 		}
@@ -26,11 +25,9 @@ func threeSum(nums []int) [][]int {
 		for num2Idx < num3Idx {
 			sum := nums[num1Idx] + nums[num2Idx] + nums[num3Idx]
 			if sum == 0 {
-				// Add triplet to result
 				result = append(result, []int{nums[num1Idx], nums[num2Idx], nums[num3Idx]})
 				num2Idx++
 
-				// Skip duplicates for num2
 				for num2Idx < num3Idx && nums[num2Idx] == nums[num2Idx-1] {
 					num2Idx++
 				}
