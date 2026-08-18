@@ -1,19 +1,14 @@
 package main
 
 import (
-	"fmt"
+	. "github.com/DeanLogan/leetcode/libs"
 )
 
 func main() {
-	printList(swapPairs(&ListNode{1, &ListNode{2, &ListNode{3, &ListNode{4, nil}}}}))
-	printList(swapPairs(nil))
-	printList(swapPairs(&ListNode{1, nil}))
-	printList(swapPairs(&ListNode{1, &ListNode{2, &ListNode{3, nil}}}))
-}
-
-type ListNode struct {
-	Val int
-	Next *ListNode
+	PrintList(swapPairs(&ListNode{Val: 1, Next: &ListNode{Val: 2, Next: &ListNode{Val: 3, Next: &ListNode{Val: 4}}}}))
+	PrintList(swapPairs(nil))
+	PrintList(swapPairs(&ListNode{Val: 1}))
+	PrintList(swapPairs(&ListNode{Val: 1, Next: &ListNode{Val: 2, Next: &ListNode{Val: 3}}}))
 }
 
 func swapPairs(head *ListNode) *ListNode {
@@ -33,14 +28,4 @@ func swapPairs(head *ListNode) *ListNode {
     }
 
     return tempHead.Next
-}
-
-// a function to print out a linked list in a nice way to the console
-func printList(head *ListNode) {
-    current := head
-    for current != nil {
-        fmt.Printf("%d -> ", current.Val)
-        current = current.Next
-    }
-    fmt.Println("nil")
 }

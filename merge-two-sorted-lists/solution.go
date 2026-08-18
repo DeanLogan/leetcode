@@ -2,12 +2,9 @@ package main
 
 import (
 	"fmt"
-)
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
+	. "github.com/DeanLogan/leetcode/libs"
+)
 
 func main() {
 	l1 := &ListNode{Val: 1}

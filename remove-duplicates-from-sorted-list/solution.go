@@ -2,20 +2,17 @@ package main
 
 import (
 	"fmt"
+
+	. "github.com/DeanLogan/leetcode/libs"
 )
 
-type ListNode struct {
-	Val int
-	Next *ListNode
-}
-
 func main(){
-	head1 := ListNode{1, &ListNode{1, &ListNode{2, nil}}}
-	head2 := ListNode{1, &ListNode{1, &ListNode{2, &ListNode{3, &ListNode{3, nil}}}}}
+	head1 := ListNode{Val: 1, Next: &ListNode{Val: 1, Next: &ListNode{Val: 2}}}
+	head2 := ListNode{Val: 1, Next: &ListNode{Val: 1, Next: &ListNode{Val: 2, Next: &ListNode{Val: 3, Next: &ListNode{Val: 3}}}}}
 	fmt.Println(deleteDuplicates(&head1))
 	fmt.Println(deleteDuplicates(&head2))
-	printList(deleteDuplicates(&head1))
-	printList(deleteDuplicates(&head2))
+	PrintList(deleteDuplicates(&head1))
+	PrintList(deleteDuplicates(&head2))
 }
 
 func deleteDuplicates(head *ListNode) *ListNode {
@@ -28,12 +25,4 @@ func deleteDuplicates(head *ListNode) *ListNode {
 		}
 	}
 	return head
-}
-
-func printList(head *ListNode) {
-    for head != nil {
-        fmt.Printf("%d -> ", head.Val)
-        head = head.Next
-    }
-    fmt.Println("nil")
 }

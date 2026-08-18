@@ -10,7 +10,7 @@ L0 → Ln → L1 → Ln - 1 → L2 → Ln - 2 → …
 ```
 You may not modify the values in the list's nodes. Only nodes themselves may be changed.
 
-**Example 1:**
+**Example 1:**  
 ![Image](https://assets.leetcode.com/uploads/2021/03/04/reorder1linked-list.jpg)
 
 
@@ -22,7 +22,7 @@ You may not modify the values in the list's nodes. Only nodes themselves may be 
 Input: head = [1,2,3,4]
 Output: [1,4,2,3]
 ```
-**Example 2:**
+**Example 2:**  
 ![Image](https://assets.leetcode.com/uploads/2021/03/09/reorder2-linked-list.jpg)
 
 ```

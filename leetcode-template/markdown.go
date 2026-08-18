@@ -89,8 +89,12 @@ func normalizeMarkdown(content string) string {
 	content = strings.ReplaceAll(content, "\u00a0", " ")
 	content = regexp.MustCompile(`\n{3,}`).ReplaceAllString(content, "\n")
 	lines := strings.Split(content, "\n")
+	exampleRe := regexp.MustCompile(`^\*\*Example \d+:\*\*$`)
 	for i, line := range lines {
 		lines[i] = strings.TrimRight(line, " \t")
+		if exampleRe.MatchString(lines[i]) {
+			lines[i] += "  "
+		}
 	}
 	return strings.TrimSpace(strings.Join(lines, "\n"))
 }

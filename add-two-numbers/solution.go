@@ -1,22 +1,16 @@
 package main
 
 import (
-	"fmt"
-	"strings"
+	. "github.com/DeanLogan/leetcode/libs"
 )
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
-
 func main() {
-	ans1 := addTwoNumbers(buildList([]int{2,4,3}), buildList([]int{5,6,4}))
-	printList(ans1)
-	ans2 := addTwoNumbers(buildList([]int{0}), buildList([]int{0}))
-	printList(ans2)
-	ans3 := addTwoNumbers(buildList([]int{9,9,9,9,9,9,9}), buildList([]int{9,9,9,9}))
-	printList(ans3)
+	ans1 := addTwoNumbers(BuildList([]int{2,4,3}), BuildList([]int{5,6,4}))
+	PrintList(ans1)
+	ans2 := addTwoNumbers(BuildList([]int{0}), BuildList([]int{0}))
+	PrintList(ans2)
+	ans3 := addTwoNumbers(BuildList([]int{9,9,9,9,9,9,9}), BuildList([]int{9,9,9,9}))
+	PrintList(ans3)
 }
 
 func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
@@ -51,32 +45,4 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 		prevNode = prevNode.Next
 	}
 	return dummyNode.Next
-}
-
-func buildList(values []int) *ListNode {
-	if len(values) == 0 {
-		return nil
-	}
-
-	head := &ListNode{Val: values[0]}
-	current := head
-	for _, value := range values[1:] {
-		current.Next = &ListNode{Val: value}
-		current = current.Next
-	}
-
-	return head
-}
-
-func printList(head *ListNode) {
-	if head == nil {
-		fmt.Println("[]")
-	}
-
-	var values []string
-	for node := head; node != nil; node = node.Next {
-		values = append(values, fmt.Sprint(node.Val))
-	}
-
-	fmt.Println("[" + strings.Join(values, ",") + "]")
 }

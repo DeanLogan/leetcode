@@ -2,26 +2,13 @@ package main
 
 import (
 	"fmt"
+
+	. "github.com/DeanLogan/leetcode/libs"
 )
 
-type ListNode struct {
-    Val int
-    Next *ListNode
-}
-
 func main() {
-	ListNode1 := &ListNode{Val: 1}
-	ListNode2 := &ListNode{Val: 2}
-	ListNode3 := &ListNode{Val: 2}
-	ListNode4 := &ListNode{Val: 1}
-	ListNode1.Next = ListNode2
-	ListNode2.Next = ListNode3
-	ListNode3.Next = ListNode4
-	fmt.Println(isPalindrome(ListNode1))
-	ListNode5 := &ListNode{Val: 1}
-	ListNode6 := &ListNode{Val: 1}
-	ListNode5.Next = ListNode6
-	fmt.Println(isPalindrome(ListNode5))
+	fmt.Println(isPalindrome(BuildList([]int{1, 2, 2, 1})))
+	fmt.Println(isPalindrome(BuildList([]int{1, 2})))
 }
 
 func isPalindrome(head *ListNode) bool {

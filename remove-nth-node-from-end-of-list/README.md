@@ -2,7 +2,7 @@
 
 Given the `head` of a linked list, remove the `nth` node from the end of the list and return its head.
 
-**Example 1:**
+**Example 1:**  
 ![Image](https://assets.leetcode.com/uploads/2020/10/03/remove_ex1.jpg)
 
 ```

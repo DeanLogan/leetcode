@@ -1,15 +1,10 @@
 package main
 
 import (
-	"fmt"
-	"strings"
 	"container/heap"
-)
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
+	. "github.com/DeanLogan/leetcode/libs"
+)
 
 type PriorityQueue []*ListNode
 
@@ -41,17 +36,17 @@ func (h *PriorityQueue) Pop() any {
 }
 
 func main() {
-	list1 := buildList([]int{1,4,5})
-	list2 := buildList([]int{1,3,4})
-	list3 := buildList([]int{2,6})
+	list1 := BuildList([]int{1,4,5})
+	list2 := BuildList([]int{1,3,4})
+	list3 := BuildList([]int{2,6})
 	ans1 := mergeKLists([]*ListNode{list1, list2, list3})
-	printList(ans1)
+	PrintList(ans1)
 	
-	ans2 := mergeKLists([]*ListNode{buildList([]int{})})
-	printList(ans2)
+	ans2 := mergeKLists([]*ListNode{BuildList([]int{})})
+	PrintList(ans2)
 	
 	ans3 := mergeKLists([]*ListNode{})
-	printList(ans3)
+	PrintList(ans3)
 }
 
 func mergeKLists(lists []*ListNode) *ListNode {
@@ -72,28 +67,4 @@ func mergeKLists(lists []*ListNode) *ListNode {
 	}
 
 	return dummy.Next
-}
-
-func buildList(values []int) *ListNode {
-	if len(values) == 0 {
-		return nil
-	}
-
-	head := &ListNode{Val: values[0]}
-	current := head
-	for _, value := range values[1:] {
-		current.Next = &ListNode{Val: value}
-		current = current.Next
-	}
-
-	return head
-}
-
-func printList(head *ListNode) {
-	var values []string
-	for node := head; node != nil; node = node.Next {
-		values = append(values, fmt.Sprint(node.Val))
-	}
-
-	fmt.Println("[" + strings.Join(values, ",") + "]")
 }

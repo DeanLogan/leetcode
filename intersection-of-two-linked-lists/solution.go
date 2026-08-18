@@ -2,43 +2,38 @@ package main
 
 import (
 	"fmt"
+
+	. "github.com/DeanLogan/leetcode/libs"
 )
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
-
 func main() {
-	headA1 := &ListNode{Val: 4}
-	headA1.Next = &ListNode{Val: 1}
-	headA1.Next.Next = &ListNode{Val: 8}
-	headA1.Next.Next.Next = &ListNode{Val: 4}
-	headA1.Next.Next.Next.Next = &ListNode{Val: 5}
-	headB1 := &ListNode{Val: 5}
-	headB1.Next = &ListNode{Val: 6}
-	headB1.Next.Next = &ListNode{Val: 1}
-	headB1.Next.Next.Next = &ListNode{Val: 8}
-	headB1.Next.Next.Next.Next = &ListNode{Val: 4}
-	headB1.Next.Next.Next.Next.Next = &ListNode{Val: 5}
+	// Example 1: intersection at node with value 8
+	shared1 := BuildList([]int{8, 4, 5})
+	headA1 := BuildList([]int{4, 1})
+	headB1 := BuildList([]int{5, 6, 1})
+	getTail(headA1).Next = shared1
+	getTail(headB1).Next = shared1
 	fmt.Println(getIntersectionNode(headA1, headB1))
 
-	headA2 := &ListNode{Val: 1}
-	headA2.Next = &ListNode{Val: 9}
-	headA2.Next.Next = &ListNode{Val: 1}
-	headA2.Next.Next.Next = &ListNode{Val: 2}
-	headA2.Next.Next.Next.Next = &ListNode{Val: 4}
-	headB2 := &ListNode{Val: 3}
-	headB2.Next = &ListNode{Val: 2}
-	headB2.Next.Next = &ListNode{Val: 4}
+	// Example 2: intersection at node with value 2
+	shared2 := BuildList([]int{2, 4})
+	headA2 := BuildList([]int{1, 9, 1})
+	headB2 := BuildList([]int{3})
+	getTail(headA2).Next = shared2
+	getTail(headB2).Next = shared2
 	fmt.Println(getIntersectionNode(headA2, headB2))
 
-	headA3 := &ListNode{Val: 2}
-	headA3.Next = &ListNode{Val: 6}
-	headA3.Next.Next = &ListNode{Val: 4}
-	headB3 := &ListNode{Val: 1}
-	headB3.Next = &ListNode{Val: 4}
+	// Example 3: no intersection
+	headA3 := BuildList([]int{2, 6, 4})
+	headB3 := BuildList([]int{1, 5})
 	fmt.Println(getIntersectionNode(headA3, headB3))
+}
+
+func getTail(head *ListNode) *ListNode {
+	for head.Next != nil {
+		head = head.Next
+	}
+	return head
 }
 
 func getIntersectionNode(headA, headB *ListNode) *ListNode {

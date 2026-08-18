@@ -2,12 +2,9 @@ package main
 
 import (
 	"fmt"
-)
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
+	. "github.com/DeanLogan/leetcode/libs"
+)
 
 func main() {
 	fmt.Println(hasCycle(buildCycleList([]int{3,2,0,-4}, 1)))
