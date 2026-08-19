@@ -2,23 +2,13 @@ package main
 
 import (
 	"fmt"
+	. "github.com/DeanLogan/leetcode/libs"
 )
 
-type TreeNode struct {
-	Val int
-   	Left *TreeNode
-   	Right *TreeNode
-}
-
 func main() {
-	root1 := &TreeNode{1, nil, nil}
-	root1.Left = &TreeNode{2, nil, nil}
-	root1.Right = &TreeNode{3, nil, nil}
-	root1.Left.Left = &TreeNode{4, nil, nil}
-	root1.Left.Right = &TreeNode{5, nil, nil}
+	root1 := BuildTree([]int{1,2,3,4,5,-1,-1})
 	fmt.Println(diameterOfBinaryTree(root1))
-	root2 := &TreeNode{1, nil, nil}
-	root2.Left = &TreeNode{2, nil, nil}
+	root2 := BuildTree([]int{1,2})
 	fmt.Println(diameterOfBinaryTree(root2))
 }
 
