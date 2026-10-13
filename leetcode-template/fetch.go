@@ -48,6 +48,7 @@ func fetchQuestion(slug string) (*question, error) {
 			difficulty
 			exampleTestcases
 			hints
+			mysqlSchemas
 			topicTags {
 				name
 				slug

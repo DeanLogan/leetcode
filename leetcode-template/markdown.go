@@ -27,6 +27,17 @@ func main() {
 `, title)
 }
 
+func renderSolutionSQLStub(title string) string {
+	return fmt.Sprintf("-- Write your %s solution below\n\n", title)
+}
+
+func renderSchemaSQLStub(schemas []string) string {
+	if len(schemas) == 0 {
+		return "-- No schema provided by LeetCode\n"
+	}
+	return strings.Join(schemas, "\n") + "\n"
+}
+
 func renderMarkdownFromHTML(src string) string {
 	content := html.UnescapeString(src)
 	content = strings.ReplaceAll(content, "\r\n", "\n")

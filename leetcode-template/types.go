@@ -1,5 +1,12 @@
 package main
 
+const (
+	databaseTagSlug = "database"
+	solutionGoFile  = "solution.go"
+	solutionSQLFile = "solution.sql"
+	schemaSQLFile   = "schema.sql"
+)
+
 type questionResponse struct {
 	Data struct {
 		Question *question `json:"question"`
@@ -17,8 +24,18 @@ type question struct {
 	Difficulty       string   `json:"difficulty"`
 	ExampleTestcases string   `json:"exampleTestcases"`
 	Hints            []string `json:"hints"`
+	MysqlSchemas     []string `json:"mysqlSchemas"`
 	TopicTags        []struct {
 		Name string `json:"name"`
 		Slug string `json:"slug"`
 	} `json:"topicTags"`
+}
+
+func (q *question) isDatabase() bool {
+	for _, tag := range q.TopicTags {
+		if tag.Slug == databaseTagSlug {
+			return true
+		}
+	}
+	return false
 }

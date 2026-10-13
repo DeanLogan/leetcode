@@ -58,9 +58,21 @@ func main() {
 		os.Exit(1)
 	}
 
-	if err := writeFile(filepath.Join(folderPath, "solution.go"), renderSolutionStub(questionData.Title)); err != nil {
-		fmt.Fprintln(os.Stderr, "write solution.go:", err)
-		os.Exit(1)
+	if questionData.isDatabase() {
+		if err := writeFile(filepath.Join(folderPath, solutionSQLFile), renderSolutionSQLStub(questionData.Title)); err != nil {
+			fmt.Fprintln(os.Stderr, "write "+solutionSQLFile+":", err)
+			os.Exit(1)
+		}
+
+		if err := writeFile(filepath.Join(folderPath, schemaSQLFile), renderSchemaSQLStub(questionData.MysqlSchemas)); err != nil {
+			fmt.Fprintln(os.Stderr, "write "+schemaSQLFile+":", err)
+			os.Exit(1)
+		}
+	} else {
+		if err := writeFile(filepath.Join(folderPath, solutionGoFile), renderSolutionStub(questionData.Title)); err != nil {
+			fmt.Fprintln(os.Stderr, "write "+solutionGoFile+":", err)
+			os.Exit(1)
+		}
 	}
 
 	if err := writeFile(filepath.Join(folderPath, "README.md"), renderReadme(questionData)); err != nil {
